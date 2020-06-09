@@ -1,4 +1,4 @@
-/**
+package yUbuntu; /**
  * yUbuntu
  * make sure to check out codedash.net (Learn code for free, forever.) and serverimage.xyz (a simple .iso mirror)!
  * Enjoy!
@@ -8,6 +8,8 @@ import java.nio.file.*;
 import java.util.Scanner;
 import java.io.*;
 import java.util.stream.Stream;
+
+import yUbuntu.yUbuntuCLI;
 
 public class yUbuntuMain {
 	public static void main (String[] args) {
@@ -129,10 +131,11 @@ public class yUbuntuMain {
 		if (savedName.equals(inputUser)) {
 			if (savedPass.equals(inputPass)) {
 				System.out.println("[ INFO ] AUTH SUCCESS.");
-				String aaa = "";
-				while (true) {
-					aaa = sc.nextLine();
-				}
+//				String aaa = "";
+//				while (true) {
+//					aaa = sc.nextLine();
+//				}
+				yUbuntuCLI.main(null);
 			} else {
 				System.out.println("Username/Password incorrect");
 				authFF();
