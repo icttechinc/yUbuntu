@@ -12,12 +12,17 @@ public class yUbuntuMain {
 		System.out.println("Coming soon!");
 		System.out.println("Welcome to yUbuntu! Please wait for the terminal to be initialized...");
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Load saved data from previous session if exists? [yes/no/discard]");
+		String loadDataTrue = sc.nextLine();
+		if (loadDataTrue.equals("yes"))
 		System.out.println("Save login info? [yes/no]");
 		String saveLogin = sc.nextLine();
 		if (saveLogin.equals("yes")) {
 			createFile();
 			String user = sc.nextLine();
 			writeUsername(user);
+		} else {
+
 		}
 	}
 
@@ -26,13 +31,11 @@ public class yUbuntuMain {
 			FileWriter saveuser = new FileWriter("loginData.yubuntu");
 			saveuser.write(username);
 			saveuser.close();
-			System.out.println("Successfully wrote to the file.");
+			System.out.println("[  OK  ] Successfully wrote to the file 'loginData.yubuntu'");
 		} catch (IOException e) {
-			System.out.println("An error occurred.");
+			System.out.println("[ERROR ] An error occurred.");
 			e.printStackTrace();
 		}
-
-		//return username;
 	}
 
 	public static void createFile() {
