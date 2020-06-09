@@ -113,11 +113,13 @@ public class yUbuntuMain {
 		String savedName = "";
 		String savedPass = "";
 		try {
-			Stream<String> lines = Files.lines(Paths.get("..\\loginData.yubuntu"));
+			//System.out.println("Working Directory = " + System.getProperty("user.dir"));
+			Stream<String> lines = Files.lines(Paths.get(".\\loginData.yubuntu"));
 			savedName = lines.skip(0).findFirst().get();
 			lines.close();
 
-			Stream<String> lines2 = Files.lines(Paths.get("..\\loginData.yubuntu"));
+			//System.out.println("Working Directory = " + System.getProperty("user.dir"));
+			Stream<String> lines2 = Files.lines(Paths.get(".\\loginData.yubuntu"));
 			savedPass = lines2.skip(1).findFirst().get();
 			lines2.close();
 		} catch (IOException e) {

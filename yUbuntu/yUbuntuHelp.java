@@ -17,18 +17,16 @@ public class yUbuntuHelp {
             System.out.println("mkdir [dirName]: creates a directory called 'dirName'");
             System.out.println("lsF: lists the files in the current directory");
             System.out.println("lsD: lists the directories in the current directory");
-            System.err.println("---===---");
-            System.err.println("There is another page after this. Run 'help -p 2'");
-            System.err.println("---===---");
+            System.out.println("---===---");
+            System.out.println("There is another page after this. Run 'help -p 2'");
+            System.out.println("---===---");
         } if (pageNumber == 2) {
-            System.err.println("---===---");
-            System.err.println("There is another page before this. Run 'help -p 1' to read it.");
-            System.err.println("---===---");
+            System.out.println("---===---");
+            System.out.println("There is another page before this. Run 'help -p 1' to read it.");
+            System.out.println("---===---");
             System.out.println("sudo apt install softwareName: installs the package called 'softwareName'");
             System.out.println("clear: clears the screen (in reality, it scrolls you down very far).");
-            System.out.println("ipgen -v 4: generates a new virtual IPv4 address for you to use");
-            System.out.println("ipgen -v 5: generates a new virtual LOCAL IPv4 address for you to use");
-            System.out.println("ipgen -v 6: generates a new virtual IPv6 address for you to use");
+            System.out.println("END OF HELP.. for now. More coming soon!");
         } else {
             System.err.println("Invalid page number.");
         }
