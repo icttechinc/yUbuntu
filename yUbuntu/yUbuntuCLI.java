@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import yUbuntu.yUbuntuHelp;
+
 public class yUbuntuCLI
 {
     public static void main(String[] args) {
@@ -16,7 +18,9 @@ public class yUbuntuCLI
 
         System.out.println("Disk space: 64 GB TOTAL, 5.42 GB used.");
         System.out.println("Memory:     6  GB TOTAL, 0.19 GB used.");
-        System.out.println("Global IPv4: xxx.xxx.xxx.xxx/32, Global IPv6: aaaa:aaaa:aaaa:aaaa::1/64, Local IPv4: 192.168.1.38");
+        System.err.println("Notice: These IP addresses are RANDOMLY GENERATED. Any coincidence with real-world ones is unintentional.");
+        System.err.println("To generate IPs, run [help] for more info.");
+        System.out.println("Global IPv4: xxx.xxx.xxx.xxx/32, Global IPv6: aaaa:aaaa:aaaa:aaaa:bbbb:cccc:dddd:0001/64, Local IPv4: 192.168.xxx.xxx");
         System.out.println("");
         System.out.println("Note: Change hostname in /etc/hostname.yubuntu");
 
@@ -49,9 +53,25 @@ public class yUbuntuCLI
     }
 
     public static void runCommand(String cmd) {
-        if (cmd.startsWith("echo ") == true) {
-            String subs1 = cmd.substring(5);
-            System.out.println(subs1);
+        if (cmd.startsWith("echo ")) {
+            String substr = cmd.substring(5);
+            System.out.println(substr);
+        } if (cmd.startsWith("help ")) {
+            System.err.println("Please run 'help -p x', where x is the page number.");
+            System.err.println("---===---");
+            System.err.println("If unsure, run 'help -p 1'.");
+        } if (cmd.startsWith("help -p ")) {
+            String substr = cmd.substring(8);
+            int pageNum = Integer.parseInt(substr);
+            yUbuntuHelp.printHelp(pageNum);
         }
+    }
+
+    public static void mkdirCMD(String dirname) {
+        //
+    }
+
+    public static void touchCMD(String filename) {
+        //
     }
 }
