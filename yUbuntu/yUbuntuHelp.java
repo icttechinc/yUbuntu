@@ -20,12 +20,13 @@ public class yUbuntuHelp {
             System.out.println("---===---");
             System.out.println("There is another page after this. Run 'help -p 2'");
             System.out.println("---===---");
-        } if (pageNumber == 2) {
+        } else if (pageNumber == 2) {
             System.out.println("---===---");
             System.out.println("There is another page before this. Run 'help -p 1' to read it.");
             System.out.println("---===---");
             System.out.println("sudo apt install softwareName: installs the package called 'softwareName'");
-            System.out.println("clear: clears the screen (in reality, it scrolls you down very far).");
+            System.out.println("clear: clears the screen (in reality, it scrolls you down very far)");
+            System.out.println("pwd: outputs the current directory you are in");
             System.out.println("END OF HELP.. for now. More coming soon!");
         } else {
             System.err.println("Invalid page number.");

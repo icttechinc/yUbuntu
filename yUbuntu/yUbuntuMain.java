@@ -14,6 +14,8 @@ import yUbuntu.yUbuntuCLI;
 
 public class yUbuntuMain {
 	public static void main (String[] args) {
+		firstInit();
+
 		String savedName = "";
 		String savedPass = "";
 
@@ -66,6 +68,50 @@ public class yUbuntuMain {
 		}
 	}
 
+	public static void firstInit() {
+		File checkExist = new File(".\\init.yubuntu");
+		boolean doesExist = checkExist.exists();
+		
+		if (doesExist) {
+			System.out.println("[  OK  ] System initialized.");
+		} else {
+			System.out.println("[ INFO ] Initializing...");
+
+			try {
+				File initFile = new File(".\\init.yubuntu");
+				if (initFile.createNewFile()) {
+					System.out.println("[  OK  ] File created: " + initFile.getName());
+				} else {
+					System.out.println("[ERROR ] File already exists.");
+				}
+			} catch (IOException e) {
+				System.out.println("[ERROR ] An error occurred.");
+				Scanner sc = new Scanner(System.in);
+				System.out.println("[ INFO ] Print stack trace? [yes/no]");
+				if (sc.nextLine().equals("yes")) {
+					e.printStackTrace();
+				} else {
+
+				}
+			}
+
+			new File("\\yUbuntuData").mkdirs();
+			new File("yUbuntuData\\home").mkdirs();
+			new File("yUbuntuData\\root").mkdirs();
+			new File("yUbuntuData\\etc").mkdirs();
+			new File("yUbuntuData\\tmp").mkdirs();
+			new File("yUbuntuData\\mnt").mkdirs();
+			new File("yUbuntuData\\var").mkdirs();
+			new File("yUbuntuData\\bin").mkdirs();
+			new File("yUbuntuData\\boot").mkdirs();
+			new File("yUbuntuData\\vault").mkdirs();
+			new File("yUbuntuData\\swap").mkdirs();
+			new File("yUbuntuData\\var\\www").mkdirs();
+			new File("yUbuntuData\\etc\\networkConf").mkdirs();
+			System.out.println("[  OK  ] Successfully initialized");
+		}
+	}
+
 	public static void writeUsername(String username) {
 		try {
 			File file = new File("..\\loginData.yubuntu");
@@ -75,7 +121,13 @@ public class yUbuntuMain {
 			System.out.println("[  OK  ] Successfully wrote username to the file './loginData.yubuntu'");
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
-			e.printStackTrace();
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Print stack trace? [yes/no]");
+			if (sc.nextLine().equals("yes")) {
+				e.printStackTrace();
+			} else {
+
+			}
 		}
 	}
 
@@ -88,7 +140,13 @@ public class yUbuntuMain {
 			System.out.println("[  OK  ] Successfully wrote password to the file './loginData.yubuntu'");
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
-			e.printStackTrace();
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Print stack trace? [yes/no]");
+			if (sc.nextLine().equals("yes")) {
+				e.printStackTrace();
+			} else {
+
+			}
 		}
 	}
 
@@ -105,6 +163,13 @@ public class yUbuntuMain {
 			}
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Print stack trace? [yes/no]");
+			if (sc.nextLine().equals("yes")) {
+				e.printStackTrace();
+			} else {
+
+			}
 		}
 	}
 
