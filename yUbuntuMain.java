@@ -28,14 +28,7 @@ public class yUbuntuMain {
 
 			//if file exists
 			if (lDEtrue == true) {
-				try (Stream<String> lines = Files.lines(Paths.get("loginData.yubuntu"))) {
-					savedName = lines.skip(0).findFirst().get();
-					savedPass = lines.skip(1).findFirst().get();
-				} catch (IOException e) {
-					System.out.println("[ERROR ] Failed to read file.");
-				} finally {
-
-				}
+				authFF();
 			} else {
 				System.out.println("[ERROR ] File does not exist.");
 			}
@@ -43,17 +36,18 @@ public class yUbuntuMain {
 			System.out.println("[ WARN ] Discard previous saved data [yes/no]");
 			String discardTrue = sc.nextLine();
 			if (discardTrue.equals("yes")) {
-				//not implemented
+				System.out.println("[ INFO ] Discarded.");
 			} else {
-				//not implemented
+				System.out.println("[ INFO ] Restarting...");
+				main(null);
 			}
 		}
 
 		///
 
-
 		System.out.println("[ INFO ] Save login info? [yes/no]");
 		String saveLogin = sc.nextLine();
+		//write login info
 		if (saveLogin.equals("yes")) {
 			createFile();
 			System.out.println("[ INFO ] Login as: ");
@@ -63,6 +57,8 @@ public class yUbuntuMain {
 			System.out.println("[ INFO ] Choose a password: ");
 			String passwd = sc.nextLine();
 			writePassword(passwd);
+			System.out.println("[  OK  ] Login info saved to './loginData.yubuntu'");
+			authFF();
 		} else {
 			System.out.println("[ WARN ] Login data skipped. Proceeding to command line");
 		}
@@ -70,9 +66,13 @@ public class yUbuntuMain {
 
 	public static void writeUsername(String username) {
 		try {
-			FileWriter saveuser = new FileWriter("loginData.yubuntu");
-			saveuser.write(username);
-			saveuser.close();
+//			FileWriter saveuser = new FileWriter("loginData.yubuntu");
+//			saveuser.write(username);
+//			saveuser.close();
+			File file = new File("loginData.yubuntu");
+			FileWriter fr = new FileWriter(file, true);
+			fr.write(username + "\n");
+			fr.close();
 			System.out.println("[  OK  ] Successfully wrote username to the file './loginData.yubuntu'");
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
@@ -82,9 +82,13 @@ public class yUbuntuMain {
 
 	public static void writePassword(String password) {
 		try {
-			FileWriter savepass = new FileWriter("loginData.yubuntu");
-			savepass.write(password);
-			savepass.close();
+//			FileWriter savepass = new FileWriter("loginData.yubuntu");
+//			savepass.write(password);
+//			savepass.close();
+			File file = new File("loginData.yubuntu");
+			FileWriter fr = new FileWriter(file, true);
+			fr.write(password + "\n");
+			fr.close();
 			System.out.println("[  OK  ] Successfully wrote password to the file './loginData.yubuntu'");
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
@@ -109,12 +113,39 @@ public class yUbuntuMain {
 	}
 
 	//authentication from saved login info
-	public static void authFF(String user, String passwd) {
-		//
-	}
+	public static void authFF() {
+		String savedName = "";
+		String savedPass = "";
+		try {
+			Stream<String> lines = Files.lines(Paths.get("loginData.yubuntu"));
+			savedName = lines.skip(0).findFirst().get();
+			lines.close();
 
-	//THE terminal
-	public static void terminal() {
-		System.out.println("[ INFO ] Not coded yet...");
+			Stream<String> lines2 = Files.lines(Paths.get("loginData.yubuntu"));
+			savedPass = lines2.skip(1).findFirst().get();
+			lines2.close();
+		} catch (IOException e) {
+			System.out.println("[ERROR ] Error reading from file './loginData.yubuntu'");
+		}
+		Scanner sc = new Scanner(System.in);
+		System.out.println("[ AUTH ] USERNAME: ");
+		String inputUser = sc.nextLine();
+		System.out.println("[ AUTH ] PASSWORD: ");
+		String inputPass = sc.nextLine();
+		if (savedName.equals(inputUser)) {
+			if (savedPass.equals(inputPass)) {
+				System.out.println("[ INFO ] AUTH SUCCESS.");
+				String aaa = "";
+				while (true) {
+					aaa = sc.nextLine();
+				}
+			} else {
+				System.out.println("Username/Password incorrect");
+				authFF();
+			}
+		} else {
+			System.out.println("Username/Password incorrect");
+			authFF();
+		}
 	}
 }
