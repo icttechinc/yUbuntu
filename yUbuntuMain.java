@@ -66,9 +66,6 @@ public class yUbuntuMain {
 
 	public static void writeUsername(String username) {
 		try {
-//			FileWriter saveuser = new FileWriter("loginData.yubuntu");
-//			saveuser.write(username);
-//			saveuser.close();
 			File file = new File("loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(username + "\n");
@@ -82,9 +79,6 @@ public class yUbuntuMain {
 
 	public static void writePassword(String password) {
 		try {
-//			FileWriter savepass = new FileWriter("loginData.yubuntu");
-//			savepass.write(password);
-//			savepass.close();
 			File file = new File("loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(password + "\n");
