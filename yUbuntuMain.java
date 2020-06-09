@@ -7,5 +7,7 @@
 public class yUbuntuMain {
 	public static void main (String[] args) {
 		System.out.println("Coming soon!");
+		System.out.println("Welcome to yUbuntu! Please wait for the terminal to be initialized...");
+		
 	}
 }
