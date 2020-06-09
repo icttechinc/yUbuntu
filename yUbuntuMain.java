@@ -16,14 +16,20 @@ public class yUbuntuMain {
 		String saveLogin = sc.nextLine();
 		if (saveLogin.equals("yes")) {
 			createFile();
+			String user = sc.nextLine();
+			writeUsername(user);
 		}
+	}
+
+	public static String writeUsername(String username;) {
+		
 	}
 
 	public static void createFile() {
 		try {
 			File loginDataF = new File("loginData.yUbuntu");
 			if (loginDataF.createNewFile()) {
-			  System.out.println("[  OK ] File created: " + loginDataF.getName());
+			  System.out.println("[  OK  ] File created: " + loginDataF.getName());
 			} else {
 			  System.out.println("[ERROR ] File already exists.");
 			}
