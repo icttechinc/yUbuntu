@@ -51,7 +51,6 @@ public class yUbuntuCLI
     public static void switchC(String cmd) {
         switch (cmd) {
             case ("echo"):
-
         }
     }
 }

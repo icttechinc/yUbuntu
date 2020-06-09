@@ -131,10 +131,6 @@ public class yUbuntuMain {
 		if (savedName.equals(inputUser)) {
 			if (savedPass.equals(inputPass)) {
 				System.out.println("[ INFO ] AUTH SUCCESS.");
-//				String aaa = "";
-//				while (true) {
-//					aaa = sc.nextLine();
-//				}
 				yUbuntuCLI.main(null);
 			} else {
 				System.out.println("Username/Password incorrect");
