@@ -28,7 +28,7 @@ public class yUbuntuMain {
 		String loadDataTrue = sc.nextLine();
 		if (loadDataTrue.equals("yes")) {
 			//check if file exists
-			File lgnDatExists = new File("..\\loginData.yubuntu");
+			File lgnDatExists = new File(".\\loginData.yubuntu");
 			boolean lDEtrue = lgnDatExists.exists();
 
 			//if file exists
@@ -62,7 +62,7 @@ public class yUbuntuMain {
 			String passwd = sc.nextLine();
 			writePassword(passwd);
 			System.out.println("[  OK  ] Login info saved to './loginData.yubuntu'");
-			authFF();
+			System.out.println("[ WARN ] RESTARTING...");
 		} else {
 			System.out.println("[ WARN ] Login data skipped. Proceeding to command line");
 		}
@@ -114,7 +114,7 @@ public class yUbuntuMain {
 
 	public static void writeUsername(String username) {
 		try {
-			File file = new File("..\\loginData.yubuntu");
+			File file = new File(".\\loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(username + "\n");
 			fr.close();
@@ -133,7 +133,7 @@ public class yUbuntuMain {
 
 	public static void writePassword(String password) {
 		try {
-			File file = new File("..\\loginData.yubuntu");
+			File file = new File(".\\loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(password + "\n");
 			fr.close();
