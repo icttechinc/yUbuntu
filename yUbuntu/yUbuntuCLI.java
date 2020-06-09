@@ -44,11 +44,11 @@ public class yUbuntuCLI
         while (runCLI == true) {
             System.out.print("[ " + user + "@" + "hostnameNotImplemented ] [ " + pwd + " ]");
             latestInput = sc.nextLine();
-            switchC(latestInput);
+            runCommand(latestInput);
         }
     }
 
-    public static void switchC(String cmd) {
+    public static void runCommand(String cmd) {
         switch (cmd) {
             case ("echo"):
         }
