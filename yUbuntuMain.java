@@ -9,20 +9,20 @@ import java.io.*;
 
 public class yUbuntuMain {
 	public static void main (String[] args) {
-		System.out.println("Coming soon!");
-		System.out.println("Welcome to yUbuntu! Please wait for the terminal to be initialized...");
+		System.out.println("[ INFO ] Coming soon!");
+		System.out.println("[ INFO ] Welcome to yUbuntu! Please wait for the terminal to be initialized...");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Load saved data from previous session if exists? [yes/no/discard]");
+		System.out.println("[ INFO ] Load saved data from previous session if exists? [yes/no/discard]");
 		String loadDataTrue = sc.nextLine();
 		if (loadDataTrue.equals("yes"))
-		System.out.println("Save login info? [yes/no]");
+		System.out.println("[ INFO ] Save login info? [yes/no]");
 		String saveLogin = sc.nextLine();
 		if (saveLogin.equals("yes")) {
 			createFile();
 			String user = sc.nextLine();
 			writeUsername(user);
 		} else {
-
+			System.out.println("[ WARN ] Login data skippepd. Proceeding to command line");
 		}
 	}
 
