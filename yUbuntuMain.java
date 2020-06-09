@@ -1,8 +1,8 @@
 /**
-* yUbuntu
-* make sure to check out codedash.net (Learn code for free, forever.) and serverimage.xyz (a simple .iso mirror)!
-* Enjoy!
-*/
+ * yUbuntu
+ * make sure to check out codedash.net (Learn code for free, forever.) and serverimage.xyz (a simple .iso mirror)!
+ * Enjoy!
+ */
 
 import java.util.Scanner;
 import java.io.*;
@@ -21,19 +21,29 @@ public class yUbuntuMain {
 		}
 	}
 
-	public static String writeUsername(String username;) {
-		
+	public static void writeUsername(String username) {
+		try {
+			FileWriter saveuser = new FileWriter("loginData.yubuntu");
+			saveuser.write(username);
+			saveuser.close();
+			System.out.println("Successfully wrote to the file.");
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+
+		//return username;
 	}
 
 	public static void createFile() {
 		try {
-			File loginDataF = new File("loginData.yUbuntu");
+			File loginDataF = new File("loginData.yubuntu");
 			if (loginDataF.createNewFile()) {
-			  System.out.println("[  OK  ] File created: " + loginDataF.getName());
+				System.out.println("[  OK  ] File created: " + loginDataF.getName());
 			} else {
-			  System.out.println("[ERROR ] File already exists.");
+				System.out.println("[ERROR ] File already exists.");
 			}
-		  } catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
 			e.printStackTrace();
 		}
