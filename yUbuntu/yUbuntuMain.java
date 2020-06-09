@@ -5,6 +5,7 @@ package yUbuntu; /**
  */
 
 import java.nio.file.*;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
 import java.util.stream.Stream;
@@ -25,14 +26,14 @@ public class yUbuntuMain {
 		String loadDataTrue = sc.nextLine();
 		if (loadDataTrue.equals("yes")) {
 			//check if file exists
-			File lgnDatExists = new File("loginData.yubuntu");
+			File lgnDatExists = new File("..\\loginData.yubuntu");
 			boolean lDEtrue = lgnDatExists.exists();
 
 			//if file exists
-			if (lDEtrue == true) {
+			if (lDEtrue) {
 				authFF();
 			} else {
-				System.out.println("[ERROR ] File does not exist.");
+				createFile();
 			}
 		} else {
 			System.out.println("[ WARN ] Discard previous saved data [yes/no]");
@@ -51,7 +52,6 @@ public class yUbuntuMain {
 		String saveLogin = sc.nextLine();
 		//write login info
 		if (saveLogin.equals("yes")) {
-			createFile();
 			System.out.println("[ INFO ] Login as: ");
 			String user = sc.nextLine();
 			writeUsername(user);
@@ -68,7 +68,7 @@ public class yUbuntuMain {
 
 	public static void writeUsername(String username) {
 		try {
-			File file = new File("loginData.yubuntu");
+			File file = new File("..\\loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(username + "\n");
 			fr.close();
@@ -81,7 +81,7 @@ public class yUbuntuMain {
 
 	public static void writePassword(String password) {
 		try {
-			File file = new File("loginData.yubuntu");
+			File file = new File("..\\loginData.yubuntu");
 			FileWriter fr = new FileWriter(file, true);
 			fr.write(password + "\n");
 			fr.close();
@@ -94,6 +94,7 @@ public class yUbuntuMain {
 
 	public static void createFile() {
 		try {
+			System.out.println("Working Directory = " + System.getProperty("user.dir"));
 			File loginDataF = new File("loginData.yubuntu");
 			if (loginDataF.createNewFile()) {
 				System.out.println("[  OK  ] File created: " + loginDataF.getName());
@@ -104,7 +105,6 @@ public class yUbuntuMain {
 			}
 		} catch (IOException e) {
 			System.out.println("[ERROR ] An error occurred.");
-			e.printStackTrace();
 		}
 	}
 
@@ -113,15 +113,16 @@ public class yUbuntuMain {
 		String savedName = "";
 		String savedPass = "";
 		try {
-			Stream<String> lines = Files.lines(Paths.get("loginData.yubuntu"));
+			Stream<String> lines = Files.lines(Paths.get("..\\loginData.yubuntu"));
 			savedName = lines.skip(0).findFirst().get();
 			lines.close();
 
-			Stream<String> lines2 = Files.lines(Paths.get("loginData.yubuntu"));
+			Stream<String> lines2 = Files.lines(Paths.get("..\\loginData.yubuntu"));
 			savedPass = lines2.skip(1).findFirst().get();
 			lines2.close();
 		} catch (IOException e) {
-			System.out.println("[ERROR ] Error reading from file './loginData.yubuntu'");
+			System.out.println("[ERROR ] Error reading from file '../loginData.yubuntu'. Restarting...");
+			main(null);
 		}
 		Scanner sc = new Scanner(System.in);
 		System.out.println("[ AUTH ] USERNAME: ");

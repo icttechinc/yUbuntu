@@ -22,7 +22,7 @@ public class yUbuntuCLI
 
         String usern = "";
         try {
-            Stream<String> lines = Files.lines(Paths.get("loginData.yubuntu"));
+            Stream<String> lines = Files.lines(Paths.get("..\\loginData.yubuntu"));
             usern = lines.skip(0).findFirst().get();
             lines.close();
         } catch (IOException e) {
@@ -42,15 +42,16 @@ public class yUbuntuCLI
         String latestInput = "";
         Scanner sc = new Scanner(System.in);
         while (runCLI == true) {
-            System.out.print("[ " + user + "@" + "hostnameNotImplemented ] [ " + pwd + " ]");
+            System.out.print("[ " + user + "@" + "hostnameNotImplemented ] [ " + pwd + " ] ");
             latestInput = sc.nextLine();
             runCommand(latestInput);
         }
     }
 
     public static void runCommand(String cmd) {
-        switch (cmd) {
-            case ("echo"):
+        if (cmd.startsWith("echo ") == true) {
+            String subs1 = cmd.substring(5);
+            System.out.println(subs1);
         }
     }
 }
