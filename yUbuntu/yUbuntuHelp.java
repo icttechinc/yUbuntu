@@ -13,8 +13,8 @@ public class yUbuntuHelp {
             System.out.println("yUbuntu Help Page " + pageNumber);
             System.out.println("help -p 39: Displays page 39 in the help manual.");
             System.out.println("echo test: outputs the text 'test'");
-            System.out.println("touch [fileName]: creates a file with the name 'fileName'");
-            System.out.println("mkdir [dirName]: creates a directory called 'dirName'");
+            System.out.println("touch fileName: creates a file with the name 'fileName'");
+            System.out.println("mkdir dirName: creates a directory called 'dirName'");
             System.out.println("lsF: lists the files in the current directory");
             System.out.println("lsD: lists the directories in the current directory");
             System.out.println("---===---");
@@ -27,6 +27,12 @@ public class yUbuntuHelp {
             System.out.println("sudo apt install softwareName: installs the package called 'softwareName'");
             System.out.println("clear: clears the screen (in reality, it scrolls you down very far)");
             System.out.println("pwd: outputs the current directory you are in");
+            System.out.println("openf file.txt: opens file.txt for further editing");                                     //
+            System.out.println("appendf this is some sample text: appends 'this is some sample text' to the open file");  //
+            System.out.println("readf -l 43: this reads line 43 from the open file");                                     //
+            System.out.println("delf: deletes the open file");                                                            //
+            System.out.println("wipef: wipes the open file, but preserves the file itself");                              //
+            System.out.println("readf -f: lists the full contents of the open file");                                     //
             System.out.println("END OF HELP.. for now. More coming soon!");
         } else {
             System.err.println("Invalid page number.");

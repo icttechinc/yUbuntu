@@ -7,12 +7,14 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 import yUbuntu.yUbuntuHelp;
+import yUbuntu.yUbuntuIO;
+
 
 public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 12.50 BETA");
+        System.out.println("Version 12.50 BETA Revision 2");
 
         Scanner sc = new Scanner(System.in);
 
@@ -74,6 +76,29 @@ public class yUbuntuCLI
             touchCMD(substr, pwd);
         } else if (cmd.startsWith("pwd")) {
             System.out.println(pwd);
+        } else if (cmd.startsWith("openf ")) {
+            String filepath = cmd.substring(6);
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.openf(filepath);
+        } else if (cmd.startsWith("appendf ")) {
+            String appendText = cmd.substring(8);
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.appendf(appendText);
+        } else if (cmd.startsWith("delf ")) {
+            String fileName = cmd.substring(5);
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.delf();
+        } else if (cmd.startsWith("readf -f")) {
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.readff();
+        } else if (cmd.startsWith("readf -l ")) {
+            int temp = Integer.parseInt(cmd.substring(9));
+            int lineNumber = (temp - 1);
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.readfl(lineNumber);
+        } else if (cmd.startsWith("wipef")) {
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.wipef();
         } else {
             System.err.println("The command you entered is either invalid or has not been implemented yet.");
             System.err.println("Please run 'help' for a list of possible commands.");
