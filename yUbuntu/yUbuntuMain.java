@@ -5,7 +5,6 @@ package yUbuntu; /**
  */
 
 import java.nio.file.*;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
 import java.util.stream.Stream;

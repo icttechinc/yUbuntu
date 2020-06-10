@@ -8,19 +8,24 @@ import java.util.stream.Stream;
 
 public class yUbuntuIO {
     String openFP = "";
+    String openPWD = "";
+    String FILEPATH = "";
     public static void main(String[] args) {
 
     }
 
     public void openf(String filePath) {
-        System.out.println("Opening file '" + openFP + "'...");
+        System.out.println("Opening file '" + filePath + "'...");
         openFP = filePath;
+        openPWD = (new File("").getAbsolutePath());
+        FILEPATH = (openPWD + "\\" + openFP);
+        System.out.println(FILEPATH);
         System.out.println("File '" + openFP + "' opened.");
     }
 
     public void appendf(String appendText) {
         try {
-            File file = new File(openFP);
+            File file = new File("file.txt");
             FileWriter fr = new FileWriter(file, true);
             fr.write(appendText + "\n");
             fr.close();
@@ -32,13 +37,13 @@ public class yUbuntuIO {
             if (sc.nextLine().equals("yes")) {
                 e.printStackTrace();
             } else {
-
+                //
             }
         }
     }
 
     public void delf() {
-        File file = new File(openFP);
+        File file = new File(FILEPATH);
         if (file.delete()) {
             System.out.println("Deleted file '" + openFP + "'.");
         } else {
@@ -48,7 +53,7 @@ public class yUbuntuIO {
 
     public void readff() {
         try {
-            FileReader fr = new FileReader(openFP);
+            FileReader fr = new FileReader(FILEPATH);
             int i;
             while ((i=fr.read()) != -1) {
                 System.out.print((char) i);
@@ -60,7 +65,7 @@ public class yUbuntuIO {
 
     public void readfl(int lineNumber) {
         try {
-            Stream<String> lines = Files.lines(Paths.get(openFP));
+            Stream<String> lines = Files.lines(Paths.get(FILEPATH));
             String readflSTR = lines.skip(lineNumber).findFirst().get();
             System.out.println(readflSTR);
             lines.close();
@@ -78,7 +83,7 @@ public class yUbuntuIO {
 
     public void wipef() {
         try {
-            PrintWriter writer = new PrintWriter(openFP);
+            PrintWriter writer = new PrintWriter(FILEPATH);
             writer.print("");
             writer.close();
         } catch (IOException e) {
