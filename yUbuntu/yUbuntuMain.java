@@ -63,6 +63,7 @@ public class yUbuntuMain {
 			writePassword(passwd);
 			System.out.println("[  OK  ] Login info saved to './loginData.yubuntu'");
 			System.out.println("[ WARN ] RESTARTING...");
+			main(null);
 		} else {
 			System.out.println("[ WARN ] Login data skipped. Proceeding to command line");
 		}
