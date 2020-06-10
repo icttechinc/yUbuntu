@@ -7,9 +7,7 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class yUbuntuIO {
-    public String openFP;
-    public String openPWD;
-    public String fullPath;
+    public String workingDir = "\\";
 
     public static void main(String[] args) {
 
@@ -23,6 +21,8 @@ public class yUbuntuIO {
         try {
             File file = new File(apName);
             FileWriter fr = new FileWriter(file, true);
+            System.out.println(apName);
+            System.out.println(apText);
             fr.write(apText);
             fr.close();
             System.out.println(apText + " --] " + apName);

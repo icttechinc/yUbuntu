@@ -14,7 +14,7 @@ public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 13.00 BETA Revision 4");
+        System.out.println("Version 13.00 BETA Revision 5");
 
         Scanner sc = new Scanner(System.in);
 
@@ -39,7 +39,7 @@ public class yUbuntuCLI
             System.out.println("[ERROR ] Error reading from file './loginData.yubuntu'");
         }
 
-        String pwd = ("yUbuntuData\\root");
+        String pwd = (System.getProperty("user.dir"));
 
         boolean run = true;
 
@@ -80,33 +80,29 @@ public class yUbuntuCLI
             String filepath = cmd.substring(6);
             yUbuntuIO yUIO = new yUbuntuIO();
             yUIO.openf(filepath);
-        } else if (cmd.startsWith("appendf -n ")) { ///////////////////////////////////////////////////////////////// APPEN4
+        } else if (cmd.startsWith("cd ")) {
+            String cddir = cmd.substring(3);
+            String str = ("\\" + cddir);
+            cdCMD(str);
+        } else if (cmd.startsWith("appendf -n ")) { ///////////////////////////////////////////////////////////////// APPEND4
+            yUbuntuIO yUIO = new yUbuntuIO();
+
             String appendFName = cmd.substring(11, cmd.indexOf("-t"));
+            String wd = yUIO.workingDir;
+            String appendName = (pwd + wd + appendFName);
             int indexN = (cmd.indexOf("-t") + 3);
             String appendText = cmd.substring(indexN);
-            System.out.println(appendFName);
-            System.out.println(appendText);
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.appendf(appendFName, appendText);
+            yUIO.appendf(appendName, appendText);
         } else if (cmd.startsWith("delf ")) {
-            String fileName = cmd.substring(5);
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.delf();
+            //
         } else if (cmd.startsWith("readf -f")) {
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.readff();
+            //
         } else if (cmd.startsWith("readf -l ")) {
-            int temp = Integer.parseInt(cmd.substring(9));
-            int lineNumber = (temp - 1);
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.readfl(lineNumber);
+            //
         } else if (cmd.startsWith("wipef")) {
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.wipef();
+            //
         } else if (cmd.startsWith("pfp")) {
-            //prints the path of the opened file. debugging use only.
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.pfp();
+            //
         } else {
             System.err.println("The command you entered is either invalid or has not been implemented yet.");
             System.err.println("Please run 'help' for a list of possible commands.");
@@ -145,5 +141,11 @@ public class yUbuntuCLI
 
             }
         }
+    }
+
+    public static void cdCMD(String dir) {
+        yUbuntuIO yUIO = new yUbuntuIO();
+        yUIO.workingDir = dir;
+        System.out.println("Directory changed to '" + yUIO.workingDir + "'.");
     }
 }
