@@ -12,6 +12,7 @@ import yUbuntu.yUbuntuIO;
 
 public class yUbuntuCLI
 {
+
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
         System.out.println("Version 13.00 BETA Revision 7.1");
@@ -36,29 +37,30 @@ public class yUbuntuCLI
             usern = lines.skip(0).findFirst().get();
             lines.close();
         } catch (IOException e) {
-            System.out.println("[ERROR ] Error reading from file './loginData.yubuntu'");
+            //
         }
 
         String pwd = (System.getProperty("user.dir"));
 
         boolean run = true;
 
-        while (run == true) {
+        while (run) {
             cli(usern, pwd, run);
         }
     }
 
     public static void cli(String user, String pwd, boolean runCLI) {
         String latestInput = "";
+        String currentFldr = "";
         Scanner sc = new Scanner(System.in);
-        while (runCLI == true) {
-            System.out.print("[ " + user + "@" + "hostnameNotImplemented ] [ " + pwd + " ] ");
+        while (runCLI) {
+            System.out.print("[ " + user + "@" + "hostnameNotImplemented ] [ " + currentFldr + " ] ");
             latestInput = sc.nextLine();
-            runCommand(latestInput, pwd);
+            runCommand(latestInput, pwd, currentFldr);
         }
     }
 
-    public static void runCommand(String cmd, String pwd) {
+    public static void runCommand(String cmd, String pwd, String currentFldr) {
         if (cmd.startsWith("echo ")) {
             String substr = cmd.substring(5);
             System.out.println(substr);
@@ -80,65 +82,11 @@ public class yUbuntuCLI
             yUIO.openf(filepath);
         } else if (cmd.startsWith("cd ")) {
             String cdPath = cmd.substring(3);
-            try {
-                File file = new File(".\\pwd.yubuntu");
-                FileWriter fr = new FileWriter(file, true);
-                yUbuntuIO yUIO = new yUbuntuIO();
-                //System.out.println(yUIO.rawDir); //debug
-                String truePath = (yUIO.rawDir + "\\" + cdPath);
-                fr.write(truePath);
-                fr.close();
-                System.out.println("[  OK  ] Successfully wrote password to the file './pwd.yubuntu'");
-            } catch (IOException e) {
-                System.out.println("[ERROR ] An error occurred.");
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Print stack trace? [yes/no]");
-                if (sc.nextLine().equals("yes")) {
-                    e.printStackTrace();
-                } else {
-
-                }
-            }
+            //
         } else if (cmd.startsWith("pwd")) {
-            try {
-                Stream<String> lines = Files.lines(Paths.get(".\\pwd.yubuntu"));
-                String npwd = lines.skip(0).findFirst().get();
-                System.out.println(npwd);
-                lines.close();
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Print stack trace? [yes/no]");
-                if (sc.nextLine().equals("yes")) {
-                    e.printStackTrace();
-                }
-            } finally {
-                System.err.println("Unknown error. Please contact info@codedash.net for support.");
-            }
+            //
         } else if (cmd.startsWith("appendf -n ")) { ///////////////////////////////////////////////////////////////// APPEND4
-            yUbuntuIO yUIO = new yUbuntuIO();
-            String appendFName = cmd.substring(11, cmd.indexOf("-t"));
-            String npwd = "";
-
-            try {
-                Stream<String> lines = Files.lines(Paths.get(".\\pwd.yubuntu"));
-                npwd = lines.skip(0).findFirst().get();
-                lines.close();
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Print stack trace? [yes/no]");
-                if (sc.nextLine().equals("yes")) {
-                    e.printStackTrace();
-                }
-            } finally {
-                System.err.println("Unknown error. Please contact info@codedash.net for support.");
-            }
-
-            String appendName = (npwd + appendFName);
-            int indexN = (cmd.indexOf("-t") + 3);
-            String appendText = cmd.substring(indexN);
-            yUIO.appendf(appendName, appendText);
+            //
         } else if (cmd.startsWith("delf ")) {
             //
         } else if (cmd.startsWith("readf -f")) {
