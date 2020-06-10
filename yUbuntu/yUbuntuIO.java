@@ -19,8 +19,23 @@ public class yUbuntuIO {
         //
     }
 
-    public void appendf(String appendText) {
+    public void appendf(String apName, String apText) {
+        try {
+            File file = new File(apName);
+            FileWriter fr = new FileWriter(file, true);
+            fr.write(apText);
+            fr.close();
+            System.out.println(apText + " --] " + apName);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Print stack trace? [yes/no]");
+            if (sc.nextLine().equals("yes")) {
+                e.printStackTrace();
+            } else {
 
+            }
+        }
     }
 
     public void delf() {
