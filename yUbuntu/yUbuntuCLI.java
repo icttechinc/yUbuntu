@@ -14,7 +14,7 @@ public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 13.00 BETA Revision 1");
+        System.out.println("Version 13.00 BETA Revision 3");
 
         Scanner sc = new Scanner(System.in);
 
@@ -80,10 +80,13 @@ public class yUbuntuCLI
             String filepath = cmd.substring(6);
             yUbuntuIO yUIO = new yUbuntuIO();
             yUIO.openf(filepath);
-        } else if (cmd.startsWith("appendf ")) {
-            String appendText = cmd.substring(8);
-            yUbuntuIO yUIO = new yUbuntuIO();
-            yUIO.appendf(appendText);
+        } else if (cmd.startsWith("appendf -n ")) { /////////////////////////////////////////////////////////////////
+            String appendFName = cmd.substring(11, cmd.indexOf("-t"));
+            String appendText = cmd.substring(cmd.indexOf("-t"));
+            System.out.println(appendFName);
+            System.out.println(appendText);
+//            yUbuntuIO yUIO = new yUbuntuIO();
+//            yUIO.appendf(appendText);
         } else if (cmd.startsWith("delf ")) {
             String fileName = cmd.substring(5);
             yUbuntuIO yUIO = new yUbuntuIO();
