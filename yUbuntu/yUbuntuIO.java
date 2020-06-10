@@ -32,9 +32,9 @@ public class yUbuntuIO {
             System.out.println("Print stack trace? [yes/no]");
             if (sc.nextLine().equals("yes")) {
                 e.printStackTrace();
-            } else {
-
             }
+        } finally {
+            System.err.println("Unknown error. Please contact info@codedash.net for support.");
         }
     }
 

@@ -14,7 +14,7 @@ public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 13.00 BETA Revision 5");
+        System.out.println("Version 13.00 BETA Revision 6");
 
         Scanner sc = new Scanner(System.in);
 
@@ -84,6 +84,8 @@ public class yUbuntuCLI
             String cddir = cmd.substring(3);
             String str = ("\\" + cddir);
             cdCMD(str);
+        } else if (cmd.startsWith("pwd")) {
+            pwdCMD();
         } else if (cmd.startsWith("appendf -n ")) { ///////////////////////////////////////////////////////////////// APPEND4
             yUbuntuIO yUIO = new yUbuntuIO();
 
@@ -147,5 +149,11 @@ public class yUbuntuCLI
         yUbuntuIO yUIO = new yUbuntuIO();
         yUIO.workingDir = dir;
         System.out.println("Directory changed to '" + yUIO.workingDir + "'.");
+    }
+
+    public static void pwdCMD() {
+        yUbuntuIO yUIO = new yUbuntuIO();
+        System.out.println("Working directory:");
+        System.out.println(yUIO.workingDir);
     }
 }
