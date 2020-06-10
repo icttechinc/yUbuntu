@@ -7,10 +7,10 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class yUbuntuIO {
-    public String workingDir = "\\";
+    public String rawDir = (System.getProperty("user.dir"));
 
     public static void main(String[] args) {
-
+        //
     }
 
     public void openf(String FP) {
@@ -36,6 +36,14 @@ public class yUbuntuIO {
         } finally {
             System.err.println("Unknown error. Please contact info@codedash.net for support.");
         }
+    }
+
+    public void cdCMD(String dir) {
+        //
+    }
+
+    public void pwdCMD() {
+        //
     }
 
     public void delf() {

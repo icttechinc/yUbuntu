@@ -14,7 +14,7 @@ public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 13.00 BETA Revision 6");
+        System.out.println("Version 13.00 BETA Revision 7.1");
 
         Scanner sc = new Scanner(System.in);
 
@@ -74,24 +74,68 @@ public class yUbuntuCLI
         } else if (cmd.startsWith("touch ")) {
             String substr = cmd.substring(6);
             touchCMD(substr, pwd);
-        } else if (cmd.startsWith("pwd")) {
-            System.out.println(pwd);
         } else if (cmd.startsWith("openf ")) {
             String filepath = cmd.substring(6);
             yUbuntuIO yUIO = new yUbuntuIO();
             yUIO.openf(filepath);
         } else if (cmd.startsWith("cd ")) {
-            String cddir = cmd.substring(3);
-            String str = ("\\" + cddir);
-            cdCMD(str);
+            String cdPath = cmd.substring(3);
+            try {
+                File file = new File(".\\pwd.yubuntu");
+                FileWriter fr = new FileWriter(file, true);
+                yUbuntuIO yUIO = new yUbuntuIO();
+                //System.out.println(yUIO.rawDir); //debug
+                String truePath = (yUIO.rawDir + "\\" + cdPath);
+                fr.write(truePath);
+                fr.close();
+                System.out.println("[  OK  ] Successfully wrote password to the file './pwd.yubuntu'");
+            } catch (IOException e) {
+                System.out.println("[ERROR ] An error occurred.");
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Print stack trace? [yes/no]");
+                if (sc.nextLine().equals("yes")) {
+                    e.printStackTrace();
+                } else {
+
+                }
+            }
         } else if (cmd.startsWith("pwd")) {
-            pwdCMD();
+            try {
+                Stream<String> lines = Files.lines(Paths.get(".\\pwd.yubuntu"));
+                String npwd = lines.skip(0).findFirst().get();
+                System.out.println(npwd);
+                lines.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Print stack trace? [yes/no]");
+                if (sc.nextLine().equals("yes")) {
+                    e.printStackTrace();
+                }
+            } finally {
+                System.err.println("Unknown error. Please contact info@codedash.net for support.");
+            }
         } else if (cmd.startsWith("appendf -n ")) { ///////////////////////////////////////////////////////////////// APPEND4
             yUbuntuIO yUIO = new yUbuntuIO();
-
             String appendFName = cmd.substring(11, cmd.indexOf("-t"));
-            String wd = yUIO.workingDir;
-            String appendName = (pwd + wd + appendFName);
+            String npwd = "";
+
+            try {
+                Stream<String> lines = Files.lines(Paths.get(".\\pwd.yubuntu"));
+                npwd = lines.skip(0).findFirst().get();
+                lines.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Print stack trace? [yes/no]");
+                if (sc.nextLine().equals("yes")) {
+                    e.printStackTrace();
+                }
+            } finally {
+                System.err.println("Unknown error. Please contact info@codedash.net for support.");
+            }
+
+            String appendName = (npwd + appendFName);
             int indexN = (cmd.indexOf("-t") + 3);
             String appendText = cmd.substring(indexN);
             yUIO.appendf(appendName, appendText);
@@ -143,17 +187,5 @@ public class yUbuntuCLI
 
             }
         }
-    }
-
-    public static void cdCMD(String dir) {
-        yUbuntuIO yUIO = new yUbuntuIO();
-        yUIO.workingDir = dir;
-        System.out.println("Directory changed to '" + yUIO.workingDir + "'.");
-    }
-
-    public static void pwdCMD() {
-        yUbuntuIO yUIO = new yUbuntuIO();
-        System.out.println("Working directory:");
-        System.out.println(yUIO.workingDir);
     }
 }
