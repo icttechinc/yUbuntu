@@ -66,6 +66,7 @@ public class yUbuntuIO {
     public void readfl(int lineNumber) {
         try {
             Stream<String> lines = Files.lines(Paths.get(FILEPATH));
+            System.out.println(FILEPATH);
             String readflSTR = lines.skip(lineNumber).findFirst().get();
             System.out.println(readflSTR);
             lines.close();

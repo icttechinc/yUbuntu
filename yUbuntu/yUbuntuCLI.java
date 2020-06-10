@@ -14,7 +14,7 @@ public class yUbuntuCLI
 {
     public static void main(String[] args) {
         System.out.println("Welcome to yUbuntu CLI!");
-        System.out.println("Version 12.52 BETA Revision 1");
+        System.out.println("Version 13.00 BETA Revision 1");
 
         Scanner sc = new Scanner(System.in);
 
