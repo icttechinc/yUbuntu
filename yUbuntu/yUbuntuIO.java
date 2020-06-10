@@ -1,31 +1,33 @@
 package yUbuntu;
 
 import java.io.*;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class yUbuntuIO {
-    String openFP = "";
-    String openPWD = "";
-    String FILEPATH = "";
+    public String openFP = "";
+    public String openPWD = "";
+    public String FP = "";
+
     public static void main(String[] args) {
 
     }
 
-    public void openf(String filePath) {
-        System.out.println("Opening file '" + filePath + "'...");
-        openFP = filePath;
+    public void openf(String FP) {
+        System.out.println("Opening file '" + FP + "'...");
+        openFP = FP;
         openPWD = (new File("").getAbsolutePath());
-        FILEPATH = (openPWD + "\\" + openFP);
-        System.out.println(FILEPATH);
+        FP = (openPWD + "\\" + openFP);
+        System.out.println(FP);
         System.out.println("File '" + openFP + "' opened.");
     }
 
     public void appendf(String appendText) {
         try {
-            File file = new File("file.txt");
+            File file = new File(FP);
             FileWriter fr = new FileWriter(file, true);
             fr.write(appendText + "\n");
             fr.close();
@@ -43,7 +45,7 @@ public class yUbuntuIO {
     }
 
     public void delf() {
-        File file = new File(FILEPATH);
+        File file = new File(FP);
         if (file.delete()) {
             System.out.println("Deleted file '" + openFP + "'.");
         } else {
@@ -53,7 +55,7 @@ public class yUbuntuIO {
 
     public void readff() {
         try {
-            FileReader fr = new FileReader(FILEPATH);
+            FileReader fr = new FileReader(FP);
             int i;
             while ((i=fr.read()) != -1) {
                 System.out.print((char) i);
@@ -65,8 +67,8 @@ public class yUbuntuIO {
 
     public void readfl(int lineNumber) {
         try {
-            Stream<String> lines = Files.lines(Paths.get(FILEPATH));
-            System.out.println(FILEPATH);
+            Stream<String> lines = Files.lines(Paths.get(FP));
+            System.out.println(FP);
             String readflSTR = lines.skip(lineNumber).findFirst().get();
             System.out.println(readflSTR);
             lines.close();
@@ -75,7 +77,8 @@ public class yUbuntuIO {
             Scanner sc = new Scanner(System.in);
             System.out.println("Print stack trace? [yes/no]");
             if (sc.nextLine().equals("yes")) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println(FP);
             } else {
 
             }
@@ -84,11 +87,15 @@ public class yUbuntuIO {
 
     public void wipef() {
         try {
-            PrintWriter writer = new PrintWriter(FILEPATH);
+            PrintWriter writer = new PrintWriter(FP);
             writer.print("");
             writer.close();
         } catch (IOException e) {
 
         }
+    }
+
+    public void pfp() {
+        System.out.println(FP);
     }
 }

@@ -99,6 +99,10 @@ public class yUbuntuCLI
         } else if (cmd.startsWith("wipef")) {
             yUbuntuIO yUIO = new yUbuntuIO();
             yUIO.wipef();
+        } else if (cmd.startsWith("pfp")) {
+            //prints the path of the opened file. debugging use only.
+            yUbuntuIO yUIO = new yUbuntuIO();
+            yUIO.pfp();
         } else {
             System.err.println("The command you entered is either invalid or has not been implemented yet.");
             System.err.println("Please run 'help' for a list of possible commands.");
